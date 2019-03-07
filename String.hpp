@@ -44,25 +44,25 @@ public:
 
     //TODO : Operateur a implémenter tous, sauf const char*
     // getCharAt
-    char& operator[] (const size_t index);
+    char& operator [] (const size_t index);
 
     // isEqual
-    bool operator== (const String& string) const;
+    bool operator == (const String& string) const;
 
     //=
-    String operator= (const String& string);
+    String operator = (const String& string);
 
     //+
-    String operator+ (const String& string);
+    String operator + (const String& string);
 
     //+=
-    String operator+= (const String& string);
+    String operator += (const String& string);
 
     //>>
-    std::istream& operator>> (std::istream& is, String& string);
+    friend std::istream& operator >> (std::istream& is, const String& string);
 
     //<<
-    std::ostream& operator<< (std::ostream& os, String& string);
+    friend std::ostream& operator << (std::ostream& os, const String& string);
 
 
 };
