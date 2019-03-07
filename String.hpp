@@ -13,6 +13,7 @@
 #pragma once
 
 #include <cstdio>
+#include <iostream>
 
 /**
  * Spécification de la classe String
@@ -58,10 +59,10 @@ public:
     String operator+= (const String& string);
 
     //>>
-    istream& operator>> (istream& is, String& string);
+    std::istream& operator>> (std::istream& is, String& string);
 
     //<<
-    ostream& operator<< (ostream& os, String% string);
+    std::ostream& operator<< (std::ostream& os, String& string);
 
 
 };
