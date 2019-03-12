@@ -1,7 +1,7 @@
 /*
  -----------------------------------------------------------------------------------
  Laboratoire : 02
- Fichier     : cstring.h
+ Fichier     : String.hpp
  Auteur(s)   : David Jaquet & Christoph Rueff
  Date        : 07.03.2019
 
@@ -12,57 +12,60 @@
 
 #pragma once
 
-#include <cstdio>
+#include <cstdio> // stdio.h ???
 #include <iostream>
+#include <string.h>
+#include <exception>
 
 /**
  * Spécification de la classe String
  */
 class String {
-    char* value;
+    char* value; // const ???
 
 public:
     String();
+
+    ~String();
 
     explicit String(const char* string);
 
     explicit String(const String& string);
 
-    explicit String(const int value);
+    explicit String(int value);
 
-    explicit String(const double value);
+    explicit String(double value);
 
-    explicit String(const bool value);
+    explicit String(bool value);
 
     size_t getSize() const;
 
-    char& getCharAt(const size_t index);
+    char& getCharAt(size_t index);
 
-    const char* getValue() const;
+    const char* getValue() const; //(not const) char* ???
 
-    String substr(const size_t start, const size_t end) const;
+    String substr(size_t start, size_t end) const;
 
     //TODO : Operateur a implémenter tous, sauf const char*
     // getCharAt
-    char& operator [] (const size_t index);
+    char& operator [] (size_t index);
 
     // isEqual
     bool operator == (const String& string) const;
 
     //=
-    String operator = (const String& string);
+    String& operator = (const String& string);
 
     //+
-    String operator + (const String& string);
+    String& operator + (const String& string);
 
     //+=
-    String operator += (const String& string);
+    String& operator += (const String& string);
 
     //>>
     friend std::istream& operator >> (std::istream& is, const String& string);
 
     //<<
     friend std::ostream& operator << (std::ostream& os, const String& string);
-
 
 };
