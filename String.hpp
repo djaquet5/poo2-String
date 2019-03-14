@@ -12,17 +12,16 @@
 
 #pragma once
 
-#include <cstdio> // stdio.h ???
+#include <cstdio>
 #include <iostream>
-#include <string.h>
+#include <cstring>
 #include <exception>
 
 /**
  * Spécification de la classe String
  */
 class String {
-    // TODO : A demander si string est immuable en C++
-    char* value; // const ???
+    char* value;
 
     void addEndOfStringChar();
 public:
