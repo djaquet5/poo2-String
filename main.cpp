@@ -21,7 +21,7 @@
  * @return Indique si le programme s'est déroulé avec ou sans problème
  */
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Hello, String!" << std::endl;
 
     return EXIT_SUCCESS;
 }

@@ -13,7 +13,6 @@
 
 #include "String.hpp"
 
-// empty string or -->  = default ???
 String::String() {
     value = new char[1];
 
@@ -29,14 +28,12 @@ String::String(const char* string) {
 }
 
 String::String(const String& string) {
-    if(string.isEqual(nullptr))
-        return;
 
     size_t size = string.getSize() + 1;
     value = new char[size];
 
     for(size_t i = 0; i < size; i++) {
-        value[i] = string.getCharAt(i);
+        value[i] = string.at(i);
     }
 }
 
@@ -52,7 +49,19 @@ String::String(bool value) {
 
 }
 
-bool String::isEqual(const String& string) const {
+bool String::equals(const String& other) const {
+    size_t size = getSize();
+
+    // TODO test ref null ?
+    if(size != other.getSize()) {
+        return false;
+    }
+
+    for(size_t i = 0; i < size; i++) {
+        if(value[i] != other.value[i]) {
+            return false;
+        }
+    }
     return true;
 }
 
@@ -60,7 +69,7 @@ size_t String::getSize() const {
     return strlen(value);
 }
 
-char& String::getCharAt(size_t index) const {
+char& String::at(size_t index) const {
     if(index >= getSize()) {
         throw std::out_of_range("index out of range");
     }
@@ -79,12 +88,12 @@ String String::substr(size_t start, size_t end) const {
 }
 
 char& String::operator [] (const size_t index) {
-    // return charAt ??? etc
+    return at(index);
 }
 
 // isEqual
-bool String::operator == (const String& string) const {
-
+bool String::operator == (const String& other) const {
+    return equals(other);
 }
 
 //=

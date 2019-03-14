@@ -39,11 +39,11 @@ public:
 
     explicit String(bool value);
 
-    bool isEqual(const String& string) const;
+    bool equals(const String& string) const;
 
     size_t getSize() const;
 
-    char& getCharAt(size_t index) const;
+    char& at(size_t index) const;
 
     const char* getValue() const; //(not const) char* ??? => non, c'est pas un getteur a proprement parlé (voir donnée 3.2)
 
@@ -53,7 +53,7 @@ public:
     // getCharAt
     char& operator [] (size_t index);
 
-    // isEqual
+    // equals
     bool operator == (const String& string) const;
 
     //=
