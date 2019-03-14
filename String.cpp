@@ -24,7 +24,7 @@ String::~String() {
 }
 
 String::String(const char* string) {
-
+    
 }
 
 String::String(const String& string) {

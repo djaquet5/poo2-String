@@ -21,6 +21,7 @@
  * Spécification de la classe String
  */
 class String {
+    // TODO : A demander si string est immuable en C++
     char* value; // const ???
 
 public:
@@ -42,7 +43,7 @@ public:
 
     char& getCharAt(size_t index);
 
-    const char* getValue() const; //(not const) char* ???
+    const char* getValue() const; //(not const) char* ??? => non, c'est pas un getteur a proprement parlé (voir donnée 3.2)
 
     String substr(size_t start, size_t end) const;
 
