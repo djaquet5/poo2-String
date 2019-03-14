@@ -123,7 +123,5 @@ std::ostream& operator << (std::ostream& os, const String& string) {
 }
 
 void String::addEndOfStringChar() {
-    size_t size = getSize();
-
-    value[size + 1] = '\0';
+    value[getSize() + 1] = '\0';
 }
