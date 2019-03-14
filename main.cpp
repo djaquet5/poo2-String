@@ -13,6 +13,7 @@
 */
 
 #include <iostream>
+#include "String.hpp"
 
 /**
  * Programme de test

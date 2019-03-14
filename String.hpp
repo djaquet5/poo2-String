@@ -24,6 +24,7 @@ class String {
     // TODO : A demander si string est immuable en C++
     char* value; // const ???
 
+    void addEndOfStringChar();
 public:
     String();
 
@@ -39,9 +40,11 @@ public:
 
     explicit String(bool value);
 
+    bool isEqual(const String& string) const;
+
     size_t getSize() const;
 
-    char& getCharAt(size_t index);
+    char& getCharAt(size_t index) const;
 
     const char* getValue() const; //(not const) char* ??? => non, c'est pas un getteur a proprement parlé (voir donnée 3.2)
 
@@ -56,6 +59,7 @@ public:
 
     //=
     String& operator = (const String& string);
+    String& operator = (const char* string);
 
     //+
     String& operator + (const String& string);

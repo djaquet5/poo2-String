@@ -16,7 +16,8 @@
 // empty string or -->  = default ???
 String::String() {
     value = new char[1];
-    value[0] = '\0';
+
+    addEndOfStringChar();
 }
 
 String::~String() {
@@ -24,11 +25,19 @@ String::~String() {
 }
 
 String::String(const char* string) {
-    
+
 }
 
 String::String(const String& string) {
+    if(string.isEqual(nullptr))
+        return;
 
+    size_t size = string.getSize() + 1;
+    value = new char[size];
+
+    for(size_t i = 0; i < size; i++) {
+        value[i] = string.getCharAt(i);
+    }
 }
 
 String::String(int value) {
@@ -43,14 +52,19 @@ String::String(bool value) {
 
 }
 
+bool String::isEqual(const String& string) const {
+    return true;
+}
+
 size_t String::getSize() const {
     return strlen(value);
 }
 
-char& String::getCharAt(size_t index) {
+char& String::getCharAt(size_t index) const {
     if(index >= getSize()) {
         throw std::out_of_range("index out of range");
     }
+
     return value[index];
 }
 
@@ -75,6 +89,16 @@ bool String::operator == (const String& string) const {
 
 //=
 String& String::operator = (const String& string) {
+    if(this != &string) {
+        delete[] value;
+
+        //new value ???
+    }
+
+    return *this;
+}
+
+String& String::operator = (const char* string) {
 
 }
 
@@ -96,4 +120,10 @@ std::istream& operator >> (std::istream& is, const String& string) {
 //<<
 std::ostream& operator << (std::ostream& os, const String& string) {
 
+}
+
+void String::addEndOfStringChar() {
+    size_t size = getSize();
+
+    value[size + 1] = '\0';
 }
