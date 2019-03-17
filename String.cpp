@@ -29,8 +29,8 @@ String::String(const char* string) {
 }
 
 String::String(const String& string) {
-    if(string.isEqual(nullptr))
-        return;
+//    if(string.isEqual(nullptr))
+//        return;
 
     size_t size = string.getSize() + 1;
     value = new char[size];

@@ -25,13 +25,13 @@ class String {
 
     void addEndOfStringChar();
 public:
-    String();
+    explicit String();
 
-    ~String();
+    explicit String(const String& string);
 
     explicit String(const char* string);
 
-    explicit String(const String& string);
+    explicit String(char value);
 
     explicit String(int value);
 
@@ -39,37 +39,44 @@ public:
 
     explicit String(bool value);
 
+    virtual ~String();
+
     bool isEqual(const String& string) const;
 
     size_t getSize() const;
 
-    char& getCharAt(size_t index) const;
+    char& getCharAt(size_t index);
 
-    const char* getValue() const; //(not const) char* ??? => non, c'est pas un getteur a proprement parlé (voir donnée 3.2)
+    const char* getValue() const;
 
     String substr(size_t start, size_t end) const;
 
     //TODO : Operateur a implémenter tous, sauf const char*
     // getCharAt
+    char operator [] (size_t index) const;
     char& operator [] (size_t index);
 
     // isEqual
     bool operator == (const String& string) const;
+    bool operator == (const char* string) const;
 
-    //=
+    // assign
     String& operator = (const String& string);
     String& operator = (const char* string);
 
-    //+
-    String& operator + (const String& string);
+    // append
+    String& operator + (const String& left, const String& right);
+    String& operator + (const String& left, const char* right);
+    String& operator + (const char* left, const String& right);
 
-    //+=
-    String& operator += (const String& string);
+    // append + assign
+    String& operator += (const String& other);
+    String& operator += (const char* other);
 
-    //>>
+    // >>
     friend std::istream& operator >> (std::istream& is, const String& string);
 
-    //<<
+    // getValue
     friend std::ostream& operator << (std::ostream& os, const String& string);
 
 };
