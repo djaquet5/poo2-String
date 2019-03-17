@@ -39,13 +39,12 @@ public:
 
     explicit String(bool value);
 
-    virtual ~String();
-
-    bool isEqual(const String& string) const;
+    bool equals(const String& string) const;
 
     size_t getSize() const;
 
-    char& getCharAt(size_t index);
+    char& at(size_t index) const;
+
 
     const char* getValue() const;
 
@@ -56,7 +55,7 @@ public:
     char operator [] (size_t index) const;
     char& operator [] (size_t index);
 
-    // isEqual
+    // equals
     bool operator == (const String& string) const;
     bool operator == (const char* string) const;
 
@@ -78,5 +77,7 @@ public:
 
     // getValue
     friend std::ostream& operator << (std::ostream& os, const String& string);
+
+    virtual ~String();
 
 };
