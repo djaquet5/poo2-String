@@ -19,20 +19,28 @@ String::String() {
     addEndOfStringChar();
 }
 
-virtual String::~String() {
-    delete[] value;
-}
-
-String::String(const char* string) {
-
-}
-
-String::String(const String& string) {
-    size_t size = string.getSize() + 1;
+String::String(const char* chars) {
+    size_t size = strlen(chars);
     value = new char[size];
 
     for(size_t i = 0; i < size; i++) {
-        value[i] = string.at(i);
+        value[i] = chars[i];
+    }
+}
+
+String::String(char c) {
+    value = new char[2];
+    value[0] = c;
+
+    addEndOfStringChar();
+}
+
+String::String(const String& other) {
+    size_t size = other.getSize() + 1;
+    value = new char[size];
+
+    for(size_t i = 0; i < size; i++) {
+        value[i] = other.at(i);
     }
 }
 
@@ -44,8 +52,11 @@ String::String(double value) {
 
 }
 
-String::String(bool value) {
+String::String(bool b) {
+    value = new char[2];
+    value[0] = b;
 
+    addEndOfStringChar();
 }
 
 bool String::equals(const String& other) const {
@@ -82,7 +93,46 @@ const char* String::getValue() const {
     return strcpy(valueCopy, value);
 }
 
-String String::substr(size_t start, size_t end) const {
+String String::substr(size_t start) const {
+
+}
+
+String String::substr(size_t start, size_t length) const {
+    size_t size = getSize();
+    String subString;
+
+    if(start > size) {
+        // TODO : Cannot instantiate ?
+//        return String();
+    }
+
+    if(start + length > size) {
+        // TODO : Cannot instantiate ?
+//        return substr(start);
+    }
+
+
+
+    for(size_t i = 0; i < length; i++) {
+        subString.append(value[start + i]);
+    }
+
+//    return subString;
+}
+
+void String::append(const String& other) {
+
+}
+
+void String::append(const char* chars) {
+
+}
+
+void String::append(char c) {
+
+}
+
+char String::operator [] (size_t index) const {
 
 }
 
@@ -93,6 +143,10 @@ char& String::operator [] (const size_t index) {
 // isEqual
 bool String::operator == (const String& other) const {
     return equals(other);
+}
+
+bool String::operator == (const char* string) const {
+
 }
 
 //=
@@ -111,12 +165,19 @@ String& String::operator = (const char* string) {
 }
 
 //+
-String& String::operator + (const String& string) {
+String& String::operator + (const String& other) {
 
+}
+
+String& String::operator + (const char* chars) {
 }
 
 //+=
 String& String::operator += (const String& string) {
+
+}
+
+String& String::operator += (const char* other) {
 
 }
 
@@ -132,4 +193,8 @@ std::ostream& operator << (std::ostream& os, const String& string) {
 
 void String::addEndOfStringChar() {
     value[getSize() + 1] = '\0';
+}
+
+String::~String() {
+    delete[] value;
 }

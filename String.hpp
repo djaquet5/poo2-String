@@ -23,32 +23,88 @@
 class String {
     char* value;
 
+    /**
+     * Ajoute le caractère '\0' a la fin de value
+     */
     void addEndOfStringChar();
 public:
+    /**
+     * Constructeur vide, l'attribut value aura uniquement le caractère '\0'
+     */
     explicit String();
 
-    explicit String(const String& string);
+    /**
+     * Constructeur par copie avec un String
+     *
+     * @param other String à copier
+     */
+    explicit String(const String& other);
 
-    explicit String(const char* string);
+    /**
+     * Constructeur par copie avec un char*
+     *
+     * @param other String à copier
+     */
+    explicit String(const char* chars);
 
-    explicit String(char value);
+    /**
+     * Constructeur par copie avec un char
+     *
+     * @param value Char à copier
+     */
+    explicit String(char c);
 
+    /**
+     * Constructeur par copie avec un int
+     *
+     * @param value Int à copier
+     */
     explicit String(int value);
 
+    /**
+     * Constructeur par copie avec un double
+     *
+     * @param value Double à copier
+     */
     explicit String(double value);
 
-    explicit String(bool value);
+    /**
+     * Constructeur par copie avec un bool
+     *
+     * @param value Bool à copier
+     */
+    explicit String(bool b);
 
-    bool equals(const String& string) const;
+    /**
+     * Indique si la valeur du String est égal à celle du String passé en paramètre
+     *
+     * @param string String a tester
+     * @return True si les valeurs sont égales, False sinon
+     */
+    bool equals(const String& other) const;
 
+    /**
+     * Retourne la taille de value sans le caractère '\0'
+     *
+     * @return Nombre de caractère au format size_t
+     */
     size_t getSize() const;
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     char& at(size_t index) const;
-
 
     const char* getValue() const;
 
-    String substr(size_t start, size_t end) const;
+    String substr(size_t start) const;
+    String substr(size_t start, size_t length) const;
+
+    void append(char c);
+    void append(const char* chars);
+    void append(const String& other);
 
     //TODO : Operateur a implémenter tous, sauf const char*
     // getCharAt
@@ -64,9 +120,8 @@ public:
     String& operator = (const char* string);
 
     // append
-    String& operator + (const String& left, const String& right);
-    String& operator + (const String& left, const char* right);
-    String& operator + (const char* left, const String& right);
+    String& operator + (const String& other);
+    String& operator + (const char* chars);
 
     // append + assign
     String& operator += (const String& other);
