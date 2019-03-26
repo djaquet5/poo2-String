@@ -41,11 +41,18 @@ public:
     explicit String(const String& other);
 
     /**
-     * Constructeur par copie avec un char*
+     * Constructeur par copie avec un c-string (char* avec le "null terminator")
      *
-     * @param other String à copier
+     * @param other String à copier (sous forme de c-string)
      */
     explicit String(const char* chars);
+
+    /**
+     * Constructeur de copie avec un char* (sans le "null terminator")
+     * @param chars tableau de char à copier
+     * @param n taille du tableau de char
+     */
+    explicit String(const char* chars, size_t n);
 
     /**
      * Constructeur par copie avec un char

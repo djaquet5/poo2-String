@@ -14,6 +14,8 @@
 #include <cmath>
 #include "String.hpp"
 
+// TODO replace all addEndOfStringChar() with value[i] = '\0'
+
 String::String() {
     value = new char[1];
 
@@ -29,6 +31,13 @@ String::String(const char* chars) {
     for(size_t i = 0; i < size; i++) {
         value[i] = chars[i];
     }
+}
+
+String::String(const char* chars, size_t n) {
+    value = new char[n + 1];
+
+    strncpy(value, chars, n);
+    value[n] = '\0';
 }
 
 String::String(char c) {
@@ -65,6 +74,7 @@ bool String::equals(const String& other) const {
     size_t size = getSize();
 
     // TODO test ref null ?
+    // TODO use strcmp not ugly forloop
     if(size != other.getSize()) {
         return false;
     }
