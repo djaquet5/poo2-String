@@ -59,14 +59,14 @@ public:
      *
      * @param value Int à copier
      */
-    explicit String(int value);
+    explicit String(int i);
 
     /**
      * Constructeur par copie avec un double
      *
      * @param value Double à copier
      */
-    explicit String(double value);
+    explicit String(double d);
 
     /**
      * Constructeur par copie avec un bool

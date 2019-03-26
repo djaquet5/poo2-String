@@ -17,8 +17,9 @@
 String::String() {
     value = new char[1];
 
-    // strlen() uses the \0 car ...
-    addEndOfStringChar();
+    // We can't use the method addEndOfStringChar because
+    // strlen use the null char ('\0')
+    value[0] = '\0';
 }
 
 String::String(const char* chars) {
@@ -46,10 +47,10 @@ String::String(const String& other) {
     }
 }
 
-String::String(int d) {
+String::String(int i) {
 }
 
-String::String(double value) {
+String::String(double d) {
 
 }
 
