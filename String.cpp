@@ -11,11 +11,13 @@
  -----------------------------------------------------------------------------------
 */
 
+#include <cmath>
 #include "String.hpp"
 
 String::String() {
     value = new char[1];
 
+    // strlen() uses the \0 car ...
     addEndOfStringChar();
 }
 
@@ -44,8 +46,7 @@ String::String(const String& other) {
     }
 }
 
-String::String(int value) {
-
+String::String(int d) {
 }
 
 String::String(double value) {
