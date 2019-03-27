@@ -23,11 +23,7 @@
 class String {
     char* value;
 
-//      We don't need that :'(
-//    /**
-//     * Ajoute le caractère '\0' a la fin de value
-//     */
-//    void addEndOfStringChar();
+    void isIndexValid(size_t index) const;
 public:
     /**
      * Constructeur vide, l'attribut value aura uniquement le caractère '\0'
@@ -111,7 +107,9 @@ public:
      * @param index
      * @return
      */
-    char& at(size_t index) const;
+    const char& at(size_t index) const;
+    char& at(size_t index);
+
 
     const char* getValue() const;
 
@@ -122,9 +120,8 @@ public:
     void append(const char* chars);
     void append(const String& other);
 
-    //TODO : Operateur a implémenter tous, sauf const char*
-    // getCharAt
-    char operator [] (size_t index) const;
+    // at
+    const char& operator [] (size_t index) const;
     char& operator [] (size_t index);
 
     // equals

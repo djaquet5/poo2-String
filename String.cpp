@@ -16,11 +16,7 @@
 
 static const char NULL_CHAR = '\0';
 
-// TODO replace all addEndOfStringChar() with value[i] = '\0'
-
-String::String() : String("") {
-
-}
+String::String() : String("") {}
 
 String::String(const char* chars) {
     size_t size = strlen(chars);
@@ -95,11 +91,15 @@ size_t String::getSize() const {
     return strlen(value);
 }
 
-char& String::at(size_t index) const {
-    if(index >= getSize()) {
-        throw std::out_of_range("index out of range");
-    }
+// TODO
+const char& String::at(size_t index) const {
+    isIndexValid(index);
+    return value[index];
+}
 
+// TODO
+char& String::at(size_t index) {
+    isIndexValid(index);
     return value[index];
 }
 
@@ -168,8 +168,8 @@ void String::append(char c) {
     value = newValue;
 }
 
-char String::operator [] (size_t index) const {
-
+const char& String::operator [] (const size_t index) const {
+    return at(index);
 }
 
 char& String::operator [] (const size_t index) {
@@ -240,19 +240,23 @@ String& String::operator += (const char* chars) {
     append(chars);
 }
 
+// TODO
 //>>
 std::istream& operator >> (std::istream& is, const String& string) {
 
 }
 
+// TODO
 //<<
 std::ostream& operator << (std::ostream& os, const String& string) {
 
 }
 
-//void String::addEndOfStringChar() {
-//    value[getSize() + 1] = NULL_CHAR;
-//}
+void String::isIndexValid(size_t index) const {
+    if(index >= getSize()) {
+        throw std::out_of_range("Index out of range");
+    }
+}
 
 String::~String() {
     delete[] value;
