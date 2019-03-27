@@ -159,6 +159,8 @@ void String::append(char c) {
     newValue[size] = c;
     newValue[size + 1] = NULL_CHAR;
 
+    strncpy(newValue, value, size);
+
     delete[] value;
     value = newValue;
 }

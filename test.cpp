@@ -1,6 +1,16 @@
-//
-// Created by jostoph on 3/27/19.
-//
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : 02
+ Fichier     : test.cpp
+ Auteur(s)   : David Jaquet & Christoph Rueff
+ Date        : 27.03.2019
+
+ But         : Liste des différents tests pour la classe String
+
+ Remarque(s) :
+
+ -----------------------------------------------------------------------------------
+*/
 
 #include <iostream>
 
@@ -235,7 +245,33 @@ bool substringTests() {
 }
 
 bool appendTests() {
+    const String constStr("Constante");
 
+    String string1("String1");
+    String string2("String2");
+
+    cout << "appendTests : ";
+    string1.append(' ');
+    if(!string1.equals("String1 ")) {
+        return fail();
+    }
+
+    string1.append("et ");
+    if(!string1.equals("String1 et ")) {
+        return fail();
+    }
+
+    string1.append(string2);
+    if(!string1.equals("String1 et String2")) {
+        return fail();
+    }
+
+    // Le test ci-dessous est commenté car il empêche la compilation.
+    // Il s'agit du comportement voulu, on ne veut pas pouvoir modifier le contenu
+    // d'un const String. Le test est donc validé
+    // constStr.append(" ne compile pas !");
+
+    return pass();
 }
 
 /* ----- Tests des opérateurs de String ----- */
@@ -326,11 +362,44 @@ bool affectationOperatorTests() {
 }
 
 bool plusOperatorTests() {
+    String string1("String1");
+    String string2("String2");
 
+    cout << "plusOperatorTests : ";
+    if((string1 + string2) != "String1String2") {
+        return fail();
+    }
+
+    if((string1 + " !") != "String1 !") {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool plusEqualOperatorTests() {
+    const String constStr("Constante");
 
+    String string1("String1");
+    String string2("String2");
+
+    cout << "plusEqualOperatorTests : ";
+    string1 += " et ";
+    if(!string1.equals("String1 et ")) {
+        return fail();
+    }
+
+    string1 += string2;
+    if(!string1.equals("String1 et String2")) {
+        return fail();
+    }
+
+    // Le test ci-dessous est commenté car il empêche la compilation.
+    // Il s'agit du comportement voulu, on ne veut pas pouvoir modifier le contenu
+    // d'un const String. Le test est donc validé
+    // constStr += " ne compile pas !";
+
+    return pass();
 }
 
 bool fluxOperatorTests() {
