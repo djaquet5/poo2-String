@@ -66,12 +66,7 @@ String::String(double d) {
     snprintf(value, size, "%f", d);
 }
 
-String::String(bool b) {
-    value = new char[2];
-
-    value[0] = b;
-    value[1] = NULL_CHAR;
-}
+String::String(bool b): String(b ? 1 : 0) {}
 
 bool String::equals(const String& other) const {
     return equals(other.value);
