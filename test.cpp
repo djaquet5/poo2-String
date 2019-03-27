@@ -111,11 +111,33 @@ bool charArrayConstructorTests() {
 }
 
 bool charConstructorTests() {
+    String s('X');
 
+    cout << "charConstructorTests : ";
+    if(s.getSize() != 1 || strcmp(s.getValue(), "X") != 0) {
+        return fail();
+    }
+    return pass();
 }
 
 bool intConstructorTests() {
+    String s(2019);
 
+    cout << "intConstructorTests : ";
+    if(s.getSize() != 4 || strcmp(s.getValue(), "2019") != 0) {
+        return fail();
+    }
+
+    String s1(-2019);
+    if(s1.getSize() != 5 || strcmp(s1.getValue(), "-2019") != 0) {
+        return fail();
+    }
+
+    String s2(0);
+    if(s2.getSize() != 1 || strcmp(s2.getValue(), "0") != 0) {
+        return fail();
+    }
+    return pass();
 }
 
 bool doubleConstructorTests() {
