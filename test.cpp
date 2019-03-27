@@ -8,6 +8,14 @@
 
 using namespace std;
 
+void pass() {
+    cout << "pass" << endl;
+}
+
+void fail() {
+    cout << "fail" << endl;
+}
+
 void runAllTests() {
     cout << "/********** Test de la classe String **********/" << endl << endl;
 
@@ -57,11 +65,29 @@ bool operatorTests() {
 /* ----- Tests des constructeurs de String ----- */
 
 bool emptyConstructorTests() {
+    String s;
 
+    cout << "emptyConstructorTests : ";
+    if(s.getSize() != 0 || s.getValue()[0] != '\0') {
+        fail();
+        return false;
+    }
+
+    pass();
+    return true;
 }
 
 bool stringConstructorTests() {
+    String s("string");
 
+    cout << "stringConstructorTests : ";
+    if(s.getSize() != 6 || strcmp(s.getValue(), "string") != 0) {
+        fail();
+        return false;
+    }
+
+    pass();
+    return true;
 }
 
 bool cstringConstructorTests() {
