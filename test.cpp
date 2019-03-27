@@ -78,9 +78,13 @@ bool emptyConstructorTests() {
 }
 
 bool stringConstructorTests() {
+
+}
+
+bool cstringConstructorTests() {
     String s("string");
 
-    cout << "stringConstructorTests : ";
+    cout << "cstringConstructorTests : ";
     if(s.getSize() != 6 || strcmp(s.getValue(), "string") != 0) {
         fail();
         return false;
@@ -88,10 +92,6 @@ bool stringConstructorTests() {
 
     pass();
     return true;
-}
-
-bool cstringConstructorTests() {
-
 }
 
 bool charArrayConstructorTests() {
