@@ -190,6 +190,8 @@ bool getSizeTests() {
 }
 
 bool atTests() {
+    const String constStr("Constante");
+
     String string("atTests!");
     size_t size = string.getSize();
 
@@ -202,19 +204,24 @@ bool atTests() {
         return fail();
     }
 
-    if(string.at(size-1) != '!') {
+    if(string.at(size - 1) != '!') {
         return fail();
     }
 
     try {
         string.at(size);
         return fail();
-    } catch(out_of_range e) {}
+    } catch(out_of_range& e) {}
 
     string.at(0) = 'b';
     if(string.at(0) != 'b') {
         return fail();
     }
+
+    // Le test ci-dessous est commenté car il empêche la compilation.
+    // Il s'agit du comportement voulu, on ne veut pas pouvoir modifier le contenu
+    // d'un const String. Le test est donc validé
+    // constStr.at(0) = 'A';
 
     return pass();
 }
@@ -234,15 +241,84 @@ bool appendTests() {
 /* ----- Tests des opérateurs de String ----- */
 
 bool atOperatorTests() {
+    const String constStr("Constante");
 
+    String string("atOperatorTests!");
+    size_t size = string.getSize();
+
+    cout << "atOperatorTests : ";
+    if(string[0] != 'a') {
+        return fail();
+    }
+
+    if(string[3] != 'p') {
+        return fail();
+    }
+
+    if(string[size - 1] != '!') {
+        return fail();
+    }
+
+    try {
+        string[size];
+        return fail();
+    } catch(out_of_range& e) {}
+
+    string[0] = 'b';
+    if(string[0] != 'b') {
+        return fail();
+    }
+
+    // Le test ci-dessous est commenté car il empêche la compilation.
+    // Il s'agit du comportement voulu, on ne veut pas pouvoir modifier le contenu
+    // d'un const String. Le test est donc validé
+    // constStr[0] = 'A';
+
+    return pass();
 }
 
 bool equalsOperatorTests() {
+    const char* str = "equalsOperatorTests";
+    String string1(str);
+    String string2(str);
 
+    cout << "equalsOperatorTests : ";
+    if(!(string1 == str)) {
+        return fail();
+    }
+
+    if(!(string1 == string2)) {
+        return fail();
+    }
+
+    string2.append(" not equals anymore");
+    if(string1 == string2) {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool notEqualsOperatorTests() {
+    const char* str = "notEqualsOperatorTests";
+    String string1(str);
+    String string2(str);
 
+    cout << "notEqualsOperatorTests : ";
+    if(string1 != str) {
+        return fail();
+    }
+
+    if(string1 != string2) {
+        return fail();
+    }
+
+    string2.append(" now equals");
+    if(!(string1 != string2)) {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool affectationOperatorTests() {

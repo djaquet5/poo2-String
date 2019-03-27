@@ -73,14 +73,17 @@ public:
     explicit String(int i);
 
     /**
-     * Constructeur par copie avec un double
+     * Constructeur par copie avec un double, l'attribut value contiendra
+     * une chaîne de caractère identique à la fonction std::to_string
+     * http://www.cplusplus.com/reference/string/to_string/
      *
      * @param value Double à copier
      */
     explicit String(double d);
 
     /**
-     * Constructeur par copie avec un bool
+     * Constructeur par copie avec un bool, l'attribut value sera égale à "1"
+     * si le booléen vaut true. Dans le cas contraire, value sera égale à "0"
      *
      * @param value Bool à copier
      */
