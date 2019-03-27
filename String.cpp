@@ -18,12 +18,8 @@ static const char NULL_CHAR = '\0';
 
 // TODO replace all addEndOfStringChar() with value[i] = '\0'
 
-String::String() {
-    value = new char[1];
+String::String() : String("") {
 
-    // We can't use the method addEndOfStringChar because
-    // strlen use the null char ('\0')
-    value[0] = NULL_CHAR;
 }
 
 String::String(const char* chars) {
@@ -81,7 +77,7 @@ String::String(bool b) {
     value = new char[2];
 
     value[0] = b;
-    value[1] = '\0';
+    value[1] = NULL_CHAR;
 }
 
 bool String::equals(const String& other) const {
@@ -115,30 +111,31 @@ const char* String::getValue() const {
 }
 
 String String::substr(size_t start) const {
-
+    return substr(start, getSize());
 }
 
 String String::substr(size_t start, size_t length) const {
     size_t size = getSize();
-    String subString;
+
+    if(start == size) {
+        return String();
+    }
 
     if(start > size) {
-        // TODO : Cannot instantiate ?
-//        return String();
+        throw std::out_of_range("Out of range index");
     }
 
     if(start + length > size) {
-        // TODO : Cannot instantiate ?
-//        return substr(start);
+        length = size - start;
     }
 
-
+    char result[length];
 
     for(size_t i = 0; i < length; i++) {
-        subString.append(value[start + i]);
+        result[i] = value[start + i];
     }
 
-//    return subString;
+    return String(result);
 }
 
 void String::append(const String& other) {
@@ -150,7 +147,7 @@ void String::append(const char* chars) {
     size_t otherSize = strlen(chars);
 
     char* newValue = new char[thisSize + otherSize + 1];
-    newValue[thisSize + otherSize] = '\0';
+    newValue[thisSize + otherSize] = NULL_CHAR;
 
     strncpy(newValue, value, thisSize + 1);
     strncat(newValue, chars, otherSize);
@@ -165,7 +162,7 @@ void String::append(char c) {
     char* newValue = new char[size + 2];
 
     newValue[size] = c;
-    newValue[size + 1] = '\0';
+    newValue[size + 1] = NULL_CHAR;
 
     delete[] value;
     value = newValue;
@@ -211,7 +208,7 @@ String& String::operator = (const char* chars) {
         size_t otherSize = strlen(chars);
 
         char* valueCopy = new char[otherSize + 1];
-        valueCopy[otherSize] = '\0';
+        valueCopy[otherSize] = NULL_CHAR;
 
         value = strncpy(valueCopy, chars, otherSize);
     }
@@ -220,11 +217,18 @@ String& String::operator = (const char* chars) {
 }
 
 //+
-String& String::operator + (const String& other) {
+String String::operator + (const String& other) {
+    String result(value);
+    result.append(other);
 
+    return result;
 }
 
-String& String::operator + (const char* chars) {
+String String::operator + (const char* chars) {
+    String result(value);
+    result.append(chars);
+
+    return result;
 }
 
 //+=
@@ -247,7 +251,7 @@ std::ostream& operator << (std::ostream& os, const String& string) {
 }
 
 //void String::addEndOfStringChar() {
-//    value[getSize() + 1] = '\0';
+//    value[getSize() + 1] = NULL_CHAR;
 //}
 
 String::~String() {

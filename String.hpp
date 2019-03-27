@@ -39,7 +39,7 @@ public:
      *
      * @param other String à copier
      */
-    explicit String(const String& other);
+    String(const String& other);
 
     /**
      * Constructeur par copie avec un c-string (char* avec le "null terminator")
@@ -140,8 +140,8 @@ public:
     String& operator = (const char* string);
 
     // append
-    String& operator + (const String& other);
-    String& operator + (const char* chars);
+    String operator + (const String& other);
+    String operator + (const char* chars);
 
     // append + assign
     String& operator += (const String& other);
