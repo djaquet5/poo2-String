@@ -23,10 +23,11 @@
 class String {
     char* value;
 
-    /**
-     * Ajoute le caractère '\0' a la fin de value
-     */
-    void addEndOfStringChar();
+//      We don't need that :'(
+//    /**
+//     * Ajoute le caractère '\0' a la fin de value
+//     */
+//    void addEndOfStringChar();
 public:
     /**
      * Constructeur vide, l'attribut value aura uniquement le caractère '\0'

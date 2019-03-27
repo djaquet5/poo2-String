@@ -14,6 +14,8 @@
 #include <cmath>
 #include "String.hpp"
 
+static const char NULL_CHAR = '\0';
+
 // TODO replace all addEndOfStringChar() with value[i] = '\0'
 
 String::String() {
@@ -21,33 +23,36 @@ String::String() {
 
     // We can't use the method addEndOfStringChar because
     // strlen use the null char ('\0')
-    value[0] = '\0';
+    value[0] = NULL_CHAR;
 }
 
 String::String(const char* chars) {
     size_t size = strlen(chars);
-    value = new char[size];
+    value = new char[size + 1];
 
     for(size_t i = 0; i < size; i++) {
         value[i] = chars[i];
     }
+
+    value[size] = NULL_CHAR;
 }
 
 String::String(const char* chars, size_t n) {
     value = new char[n + 1];
 
     strncpy(value, chars, n);
-    value[n] = '\0';
+    value[n] = NULL_CHAR;
 }
 
 String::String(char c) {
     value = new char[2];
-    value[0] = c;
 
-    addEndOfStringChar();
+    value[0] = c;
+    value[1] = NULL_CHAR;
 }
 
 String::String(const String& other) {
+    // Add one to the size to get the null char
     size_t size = other.getSize() + 1;
     value = new char[size];
 
@@ -57,17 +62,26 @@ String::String(const String& other) {
 }
 
 String::String(int i) {
+    size_t size = (size_t) snprintf(nullptr, 0, "%d", i) + 1;
+    value = new char[size];
+
+    // TODO : Pas sur que ça marche, sinon, passer par un buffer et faire strcpy
+    snprintf(value, size, "%d", i);
 }
 
 String::String(double d) {
+    size_t size = (size_t) snprintf(nullptr, 0, "%f", d) + 1;
+    value = new char[size];
 
+    // TODO : Pas sur que ça marche, sinon, passer par un buffer et faire strcpy
+    snprintf(value, size, "%f", d);
 }
 
 String::String(bool b) {
     value = new char[2];
-    value[0] = b;
 
-    addEndOfStringChar();
+    value[0] = b;
+    value[1] = '\0';
 }
 
 bool String::equals(const String& other) const {
@@ -203,9 +217,9 @@ std::ostream& operator << (std::ostream& os, const String& string) {
 
 }
 
-void String::addEndOfStringChar() {
-    value[getSize() + 1] = '\0';
-}
+//void String::addEndOfStringChar() {
+//    value[getSize() + 1] = '\0';
+//}
 
 String::~String() {
     delete[] value;
