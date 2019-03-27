@@ -1,6 +1,16 @@
-//
-// Created by jostoph on 3/27/19.
-//
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : 02
+ Fichier     : test.hpp
+ Auteur(s)   : David Jaquet & Christoph Rueff
+ Date        : 27.03.2019
+
+ But         : Liste des différents tests pour la classe String
+
+ Remarque(s) :
+
+ -----------------------------------------------------------------------------------
+*/
 
 #pragma once
 

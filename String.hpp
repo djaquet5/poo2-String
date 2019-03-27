@@ -73,14 +73,17 @@ public:
     explicit String(int i);
 
     /**
-     * Constructeur par copie avec un double
+     * Constructeur par copie avec un double, l'attribut value contiendra
+     * une chaîne de caractère identique à la fonction std::to_string
+     * http://www.cplusplus.com/reference/string/to_string/
      *
      * @param value Double à copier
      */
     explicit String(double d);
 
     /**
-     * Constructeur par copie avec un bool
+     * Constructeur par copie avec un bool, l'attribut value sera égale à "1"
+     * si le booléen vaut true. Dans le cas contraire, value sera égale à "0"
      *
      * @param value Bool à copier
      */
@@ -135,7 +138,11 @@ public:
     const char* getValue() const;
 
     /**
-     * Retourne une sous chaine depuis l'index start jusqu'à la fin
+     * Retourne une sous chaine depuis l'index start jusqu'à la fin.
+     * Le paramêtre start est soumis au même condition que la fonction std::string::substr.
+     * Si ce dernier vaut la taille de la chaîne, on retourne une chaîne vide, s'il est plus
+     * grand, une exception est levée
+     * http://www.cplusplus.com/reference/string/string/substr/
      *
      * @param start Index servant à définir le premier char de la sous chaine
      * @return Sous chaine voulue au format String
@@ -144,7 +151,11 @@ public:
     String substr(size_t start) const;
 
     /**
-     * Retourne une sous chaine depuis l'index start de longueur length
+     * Retourne une sous chaine depuis l'index start de longueur length.
+     * Le paramêtre start est soumis au même condition que la fonction std::string::substr.
+     * Si ce dernier vaut la taille de la chaîne, on retourne une chaîne vide, s'il est plus
+     * grand, une exception est levée
+     * http://www.cplusplus.com/reference/string/string/substr/
      *
      * @param start Index servant à définir le premier char de la sous chaine
      * @param length Longueur de la sous chaine
