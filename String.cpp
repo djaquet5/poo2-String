@@ -181,19 +181,28 @@ bool String::operator != (const char* chars) const {
     return !equals(chars);
 }
 
-//=
-String& String::operator = (const String& string) {
-    if(this != &string) {
-        delete[] value;
-
-        //new value ???
+String& String::operator = (const String& other) {
+    if(this != &other) {
+        // TODO c'est juste ça ???
+        *this = other.value;
     }
 
     return *this;
 }
 
-String& String::operator = (const char* string) {
+String& String::operator = (const char* chars) {
+    if(strcmp(value, chars) != 0) {
+        delete[] value;
 
+        size_t otherSize = strlen(chars);
+
+        char* valueCopy = new char[otherSize + 1];
+        valueCopy[otherSize] = '\0';
+
+        value = strncpy(valueCopy, chars, otherSize);
+    }
+
+    return *this;
 }
 
 //+
