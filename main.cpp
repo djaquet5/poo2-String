@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include "String.hpp"
+#include "test.hpp"
 
 /**
  * Programme de test
@@ -21,7 +22,9 @@
  * @return Indique si le programme s'est déroulé avec ou sans problème
  */
 int main() {
-    std::cout << "Hello, String!" << std::endl;
+
+    runAllTests();
 
     return EXIT_SUCCESS;
 }
+

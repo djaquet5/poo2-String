@@ -29,7 +29,7 @@ class String {
      * @param index Index à vérifier
      * @throw out_of_range si le l'index n'est pas valide
      */
-    void isIndexValid(size_t index) const throw(std::out_of_range);
+    void isIndexValid(size_t index) const;
 public:
     /**
      * Constructeur vide, l'attribut value aura uniquement le caractère '\0'
@@ -116,7 +116,7 @@ public:
      * @return Caractère correspondant à l'index
      * @throw out_of_range si le l'index n'est pas valide
      */
-    const char& at(size_t index) const throw(std::out_of_range);
+    const char& at(size_t index) const;
 
     /**
      * Retourne le caractère à l'index donné
@@ -125,7 +125,7 @@ public:
      * @return Caractère correspondant à l'index
      * @throw out_of_range si le l'index n'est pas valide
      */
-    char& at(size_t index) throw(std::out_of_range);
+    char& at(size_t index);
 
     /**
      * Obtiens la valeur du String
@@ -141,7 +141,7 @@ public:
      * @return Sous chaine voulue au format String
      * @throw out_of_range si le l'index n'est pas valide
      */
-    String substr(size_t start) const throw(std::out_of_range);
+    String substr(size_t start) const;
 
     /**
      * Retourne une sous chaine depuis l'index start de longueur length
@@ -151,7 +151,7 @@ public:
      * @return Sous chaine voulue au format String
      * @throw out_of_range si le l'index n'est pas valide
      */
-    String substr(size_t start, size_t length) const throw(std::out_of_range);
+    String substr(size_t start, size_t length) const;
 
     /**
      * Concatène la valeur courrante de la chaine avec le caractère donné
@@ -181,7 +181,7 @@ public:
      * @return Caractère voulu
      * @throw out_of_range si le l'index n'est pas valide
      */
-    const char& operator [] (size_t index) const throw(std::out_of_range);
+    const char& operator [] (size_t index) const;
 
     /**
      * Operateur servant à obtenir un caractère à un index donné
@@ -190,7 +190,7 @@ public:
      * @return Caractère voulu
      * @throw out_of_range si le l'index n'est pas valide
      */
-    char& operator [] (size_t index) throw(std::out_of_range);
+    char& operator [] (size_t index);
 
     /**
      * Vérifie si la valeur du String est égale à la valeur courante

@@ -110,11 +110,11 @@ const char* String::getValue() const {
     return strncpy(valueCopy, value, size + 1);
 }
 
-String String::substr(size_t start) const throw(std::out_of_range) {
+String String::substr(size_t start) const {
     return substr(start, getSize());
 }
 
-String String::substr(size_t start, size_t length) const throw(std::out_of_range) {
+String String::substr(size_t start, size_t length) const {
     size_t size = getSize();
 
     if(start == size) {
@@ -166,11 +166,11 @@ void String::append(char c) {
     value = newValue;
 }
 
-const char& String::operator [] (const size_t index) const throw(std::out_of_range) {
+const char& String::operator [] (const size_t index) const {
     return at(index);
 }
 
-char& String::operator [] (const size_t index) throw(std::out_of_range) {
+char& String::operator [] (const size_t index) {
     return at(index);
 }
 
@@ -248,7 +248,7 @@ std::ostream& operator << (std::ostream& os, const String& string) {
     return os;
 }
 
-void String::isIndexValid(size_t index) const throw(std::out_of_range) {
+void String::isIndexValid(size_t index) const {
     if(index >= getSize()) {
         throw std::out_of_range("Index out of range");
     }
