@@ -4,6 +4,7 @@
 
 #include <iostream>
 
+#include "String.hpp"
 #include "test.hpp"
 
 using namespace std;
@@ -187,15 +188,71 @@ bool boolConstructorTests() {
 /* ----- Tests des méthodes de String ----- */
 
 bool equalsTests() {
+    const char* str = "equalsTests";
+    String string1(str);
+    String string2(str);
 
+    cout << "equalsTests : ";
+    if(!string1.equals(str)) {
+        return fail();
+    }
+
+    if(!string1.equals(string2)) {
+        return fail();
+    }
+
+    string2.append(" not equals anymore");
+    if(string2.equals(string1)) {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool getSizeTests() {
+    String string("Size");
 
+    cout << "getSizeTests : ";
+    if(string.getSize() != 4) {
+        return fail();
+    }
+
+    string.append(" !");
+    if(string.getSize() != 6) {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool atTests() {
+    String string("atTests!");
+    size_t size = string.getSize();
 
+    cout << "atTests : ";
+    if(string.at(0) != 'a') {
+        return fail();
+    }
+
+    if(string.at(3) != 'e') {
+        return fail();
+    }
+
+    if(string.at(size-1) != '!') {
+        return fail();
+    }
+
+    try {
+        string.at(size);
+        return fail();
+    } catch(out_of_range e) {}
+
+    string.at(0) = 'b';
+    if(string.at(0) != 'b') {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool getValueTests() {
