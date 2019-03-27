@@ -13,7 +13,6 @@
 */
 
 #include <iostream>
-#include "String.hpp"
 #include "test.hpp"
 
 /**

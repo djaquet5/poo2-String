@@ -2,10 +2,7 @@
 // Created by jostoph on 3/27/19.
 //
 
-#ifndef TEST_HPP
-#define TEST_HPP
-
-#include "String.hpp"
+#pragma once
 
 /**
  * Lance tous les tests, dès qu'un test échoue le programme s'arrête
@@ -75,5 +72,3 @@ bool plusOperatorTests();
 bool plusEqualOperatorTests();
 
 bool fluxOperatorTests();
-
-#endif // TEST_HPP
