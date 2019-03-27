@@ -71,8 +71,14 @@ String::String(bool b) {
 }
 
 bool String::equals(const String& other) const {
-    size_t size = getSize();
-    return size == other.getSize() && !strncmp(value, other.value, size);
+    return equals(other.value);
+}
+
+bool String::equals(const char* chars) const {
+    size_t thisSize = getSize();
+    size_t otherSize = strlen(chars);
+
+    return thisSize == otherSize && !strncmp(value, chars, thisSize);
 }
 
 size_t String::getSize() const {
@@ -159,13 +165,12 @@ char& String::operator [] (const size_t index) {
     return at(index);
 }
 
-// isEqual
 bool String::operator == (const String& other) const {
     return equals(other);
 }
 
-bool String::operator == (const char* string) const {
-
+bool String::operator == (const char* chars) const {
+    return equals(chars);
 }
 
 //=

@@ -91,6 +91,14 @@ public:
     bool equals(const String& other) const;
 
     /**
+     * Indique si la du String est égale au c-string en paramètre (avec le caractère null)
+     *
+     * @param chars le c-string à comparer
+     * @return True si la valeur du String et le c-string sont égales
+     */
+    bool equals(const char* chars) const;
+
+    /**
      * Retourne la taille de value sans le caractère '\0'
      *
      * @return Nombre de caractère au format size_t
