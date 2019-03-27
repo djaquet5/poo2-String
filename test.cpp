@@ -84,7 +84,6 @@ bool stringConstructorTests() {
 
     cout << "stringConstructorTests : ";
     if(s1.getSize() != 3 || strcmp(s1.getValue(), "abc") != 0) {
-        fail();
         return fail();
     }
     return pass();
@@ -95,14 +94,20 @@ bool cstringConstructorTests() {
 
     cout << "cstringConstructorTests : ";
     if(s.getSize() != 6 || strcmp(s.getValue(), "string") != 0) {
-        fail();
         return fail();
     }
     return pass();
 }
 
 bool charArrayConstructorTests() {
+    char chars[5] = {'a', 'b', 'c', 'd', 'e'};
+    String s(chars, 5);
 
+    cout << "charArrayConstructorTests : ";
+    if(s.getSize() != 5 || strcmp(s.getValue(), "abcde") != 0) {
+        return fail();
+    }
+    return pass();
 }
 
 bool charConstructorTests() {
