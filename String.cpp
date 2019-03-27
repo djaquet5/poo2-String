@@ -243,13 +243,17 @@ String& String::operator += (const char* chars) {
 // TODO
 //>>
 std::istream& operator >> (std::istream& is, const String& string) {
+    is >> string.value;
 
+    return is;
 }
 
 // TODO
 //<<
 std::ostream& operator << (std::ostream& os, const String& string) {
+    os << string.value;
 
+    return os;
 }
 
 void String::isIndexValid(size_t index) const {
