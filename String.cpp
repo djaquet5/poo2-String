@@ -173,6 +173,14 @@ bool String::operator == (const char* chars) const {
     return equals(chars);
 }
 
+bool String::operator != (const String& other) const {
+    return !equals(other);
+}
+
+bool String::operator != (const char* chars) const {
+    return !equals(chars);
+}
+
 //=
 String& String::operator = (const String& string) {
     if(this != &string) {

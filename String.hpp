@@ -130,6 +130,10 @@ public:
     bool operator == (const String& string) const;
     bool operator == (const char* string) const;
 
+    // not equals
+    bool operator != (const String& string) const;
+    bool operator != (const char* string) const;
+
     // assign
     String& operator = (const String& string);
     String& operator = (const char* string);
