@@ -205,12 +205,12 @@ String& String::operator + (const char* chars) {
 }
 
 //+=
-String& String::operator += (const String& string) {
-
+String& String::operator += (const String& other) {
+    append(other);
 }
 
-String& String::operator += (const char* other) {
-
+String& String::operator += (const char* chars) {
+    append(chars);
 }
 
 //>>
