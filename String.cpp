@@ -20,13 +20,11 @@ String::String() : String("") {}
 
 String::String(const char* chars) {
     size_t size = strlen(chars);
+
     value = new char[size + 1];
-
-    for(size_t i = 0; i < size; i++) {
-        value[i] = chars[i];
-    }
-
     value[size] = NULL_CHAR;
+
+    strncpy(value, chars, size);
 }
 
 String::String(const char* chars, size_t n) {
@@ -119,11 +117,10 @@ String String::substr(size_t start, size_t length) const {
         length = size - start;
     }
 
-    char result[length];
+    char result[length + 1];
+    result[length] = NULL_CHAR;
 
-    for(size_t i = 0; i < length; i++) {
-        result[i] = value[start + i];
-    }
+    strncpy(result, value + start, length);
 
     return String(result);
 }

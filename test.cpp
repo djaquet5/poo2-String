@@ -272,7 +272,41 @@ bool getValueTests() {
 }
 
 bool substringTests() {
+    const String s("hello world");
 
+    String s1 = s.substr(0);
+
+    cout << "substringTests : ";
+    if(s1.getSize() != 11 || strcmp(s.getValue(), "hello world") != 0) {
+        return fail();
+    }
+
+    s1 = s.substr(3);
+    if(s1.getSize() != 8 || strcmp(s1.getValue(), "lo world") != 0) {
+        return fail();
+    }
+
+    s1 = s.substr(s.getSize());
+    if(s1.getSize() != 0 || strcmp(s1.getValue(), "") != 0) {
+        return fail();
+    }
+
+    try {
+        s1 = s.substr(s.getSize() + 1);
+        return fail();
+    } catch(out_of_range& e) {}
+
+    s1 = s.substr(6,3);
+    if(s1.getSize() != 3 || strcmp(s1.getValue(), "wor") != 0) {
+        return fail();
+    }
+
+    s1 = s.substr(6, 100);
+    if(s1.getSize() != 5 || strcmp(s1.getValue(), "world") != 0) {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool appendTests() {
