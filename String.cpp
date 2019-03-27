@@ -44,13 +44,10 @@ String::String(char c) {
 }
 
 String::String(const String& other) {
-    // Add one to the size to get the null char
-    size_t size = other.getSize() + 1;
-    value = new char[size];
+    size_t size = other.getSize();
+    value = new char[size + 1];
 
-    for(size_t i = 0; i < size; i++) {
-        value[i] = other.at(i);
-    }
+    strcpy(value, other.value);
 }
 
 String::String(int i) {

@@ -8,12 +8,14 @@
 
 using namespace std;
 
-void pass() {
+bool pass() {
     cout << "pass" << endl;
+    return true;
 }
 
-void fail() {
+bool fail() {
     cout << "fail" << endl;
+    return false;
 }
 
 void runAllTests() {
@@ -69,16 +71,23 @@ bool emptyConstructorTests() {
 
     cout << "emptyConstructorTests : ";
     if(s.getSize() != 0 || s.getValue()[0] != '\0') {
-        fail();
-        return false;
+        return fail();
     }
-
-    pass();
-    return true;
+    return pass();
 }
 
+// TODO add test if s is modified after ?
 bool stringConstructorTests() {
+    String s("abc");
 
+    String s1(s);
+
+    cout << "stringConstructorTests : ";
+    if(s1.getSize() != 3 || strcmp(s1.getValue(), "abc") != 0) {
+        fail();
+        return fail();
+    }
+    return pass();
 }
 
 bool cstringConstructorTests() {
@@ -87,11 +96,9 @@ bool cstringConstructorTests() {
     cout << "cstringConstructorTests : ";
     if(s.getSize() != 6 || strcmp(s.getValue(), "string") != 0) {
         fail();
-        return false;
+        return fail();
     }
-
-    pass();
-    return true;
+    return pass();
 }
 
 bool charArrayConstructorTests() {
