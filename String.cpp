@@ -110,20 +110,18 @@ const char* String::getValue() const {
     return strncpy(valueCopy, value, size + 1);
 }
 
-String String::substr(size_t start) const {
+String String::substr(size_t start) const throw(std::out_of_range) {
     return substr(start, getSize());
 }
 
-String String::substr(size_t start, size_t length) const {
+String String::substr(size_t start, size_t length) const throw(std::out_of_range) {
     size_t size = getSize();
 
     if(start == size) {
         return String();
     }
 
-    if(start > size) {
-        throw std::out_of_range("Out of range index");
-    }
+    isIndexValid(start);
 
     if(start + length > size) {
         length = size - start;
@@ -168,11 +166,11 @@ void String::append(char c) {
     value = newValue;
 }
 
-const char& String::operator [] (const size_t index) const {
+const char& String::operator [] (const size_t index) const throw(std::out_of_range) {
     return at(index);
 }
 
-char& String::operator [] (const size_t index) {
+char& String::operator [] (const size_t index) throw(std::out_of_range) {
     return at(index);
 }
 
@@ -216,7 +214,6 @@ String& String::operator = (const char* chars) {
     return *this;
 }
 
-//+
 String String::operator + (const String& other) {
     String result(value);
     result.append(other);
@@ -231,7 +228,6 @@ String String::operator + (const char* chars) {
     return result;
 }
 
-//+=
 String& String::operator += (const String& other) {
     append(other);
 }
@@ -240,23 +236,19 @@ String& String::operator += (const char* chars) {
     append(chars);
 }
 
-// TODO
-//>>
 std::istream& operator >> (std::istream& is, const String& string) {
     is >> string.value;
 
     return is;
 }
 
-// TODO
-//<<
 std::ostream& operator << (std::ostream& os, const String& string) {
     os << string.value;
 
     return os;
 }
 
-void String::isIndexValid(size_t index) const {
+void String::isIndexValid(size_t index) const throw(std::out_of_range) {
     if(index >= getSize()) {
         throw std::out_of_range("Index out of range");
     }
