@@ -72,19 +72,7 @@ String::String(bool b) {
 
 bool String::equals(const String& other) const {
     size_t size = getSize();
-
-    // TODO test ref null ?
-    // TODO use strcmp not ugly forloop
-    if(size != other.getSize()) {
-        return false;
-    }
-
-    for(size_t i = 0; i < size; i++) {
-        if(value[i] != other.value[i]) {
-            return false;
-        }
-    }
-    return true;
+    return size == other.getSize() && !strncmp(value, other.value, size);
 }
 
 size_t String::getSize() const {
@@ -100,9 +88,10 @@ char& String::at(size_t index) const {
 }
 
 const char* String::getValue() const {
-    char* valueCopy = new char[getSize() + 1];
+    size_t size = getSize();
+    char* valueCopy = new char[size + 1];
 
-    return strcpy(valueCopy, value);
+    return strncpy(valueCopy, value, size + 1);
 }
 
 String String::substr(size_t start) const {
@@ -133,15 +122,33 @@ String String::substr(size_t start, size_t length) const {
 }
 
 void String::append(const String& other) {
-
+    append(other.getValue());
 }
 
 void String::append(const char* chars) {
+    size_t thisSize = getSize();
+    size_t otherSize = strlen(chars);
 
+    char* newValue = new char[thisSize + otherSize + 1];
+    newValue[thisSize + otherSize] = '\0';
+
+    strncpy(newValue, value, thisSize + 1);
+    strncat(newValue, chars, otherSize);
+
+    delete[] value;
+    value = newValue;
 }
 
 void String::append(char c) {
+    size_t size = getSize();
 
+    char* newValue = new char[size + 2];
+
+    newValue[size] = c;
+    newValue[size + 1] = '\0';
+
+    delete[] value;
+    value = newValue;
 }
 
 char String::operator [] (size_t index) const {
