@@ -122,7 +122,9 @@ String String::substr(size_t start, size_t length) const {
 }
 
 void String::append(const String& other) {
-    append(other.getValue());
+    const char* otherValue = other.getValue();
+    append(otherValue);
+    delete[] otherValue;
 }
 
 void String::append(const char* chars) {
