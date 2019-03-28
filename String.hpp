@@ -100,7 +100,8 @@ public:
     bool equals(const String& other) const;
 
     /**
-     * Indique si la du String est égale au c-string en paramètre (avec le caractère null)
+     * Indique si la du String est égale au c-string en paramètre
+     * (avec le caractère null)
      *
      * @param chars le c-string à comparer
      * @return True si la valeur du String et le c-string sont égales
@@ -141,9 +142,10 @@ public:
 
     /**
      * Retourne une sous chaine depuis l'index start jusqu'à la fin.
-     * Le paramêtre start est soumis au même condition que la fonction std::string::substr.
-     * Si ce dernier vaut la taille de la chaîne, on retourne une chaîne vide, s'il est plus
-     * grand, une exception est levée
+     * Le paramêtre start est soumis au même condition que la fonction
+     * std::string::substr.
+     * Si ce dernier vaut la taille de la chaîne, on retourne une chaîne vide,
+     * s'il est plus grand, une exception est levée
      * http://www.cplusplus.com/reference/string/string/substr/
      *
      * @param start Index servant à définir le premier char de la sous chaine
@@ -154,9 +156,10 @@ public:
 
     /**
      * Retourne une sous chaine depuis l'index start de longueur length.
-     * Le paramêtre start est soumis au même condition que la fonction std::string::substr.
-     * Si ce dernier vaut la taille de la chaîne, on retourne une chaîne vide, s'il est plus
-     * grand, une exception est levée
+     * Le paramêtre start est soumis au même condition que la fonction
+     * std::string::substr.
+     * Si ce dernier vaut la taille de la chaîne, on retourne une chaîne vide,
+     * s'il est plus grand, une exception est levée
      * http://www.cplusplus.com/reference/string/string/substr/
      *
      * @param start Index servant à définir le premier char de la sous chaine

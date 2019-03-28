@@ -93,7 +93,6 @@ bool operatorTests() {
 
 /* ----- Tests des constructeurs de String ----- */
 
-// TODO : revérifier commentaire de constructeurss
 bool emptyConstructorTests() {
     const char* value;
     String s;
