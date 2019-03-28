@@ -366,11 +366,15 @@ bool plusOperatorTests() {
     String string2("String2");
 
     cout << "plusOperatorTests : ";
-    if((string1 + string2) != "String1String2") {
+    if((string1 + ' ') != "String1 ") {
         return fail();
     }
 
     if((string1 + " !") != "String1 !") {
+        return fail();
+    }
+
+    if((string1 + string2) != "String1String2") {
         return fail();
     }
 
@@ -384,7 +388,13 @@ bool plusEqualOperatorTests() {
     String string2("String2");
 
     cout << "plusEqualOperatorTests : ";
-    string1 += " et ";
+
+    string1 += ' ';
+    if(string1 != "String1 ") {
+        return fail();
+    }
+
+    string1 += "et ";
     if(!string1.equals("String1 et ")) {
         return fail();
     }

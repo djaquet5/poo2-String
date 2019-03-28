@@ -268,6 +268,14 @@ public:
     String operator + (const char* chars);
 
     /**
+     * Concatène la valeur courante avec le caractère passé en paramètre
+     *
+     * @param c Caractères a concaténer
+     * @return Résultat de la concaténation
+     */
+    String operator + (char c);
+
+    /**
      * Concatène la valeur courante avec celle passée en paramètre
      * et assigne le résultat à la valeur courante
      *
@@ -284,6 +292,15 @@ public:
      * @return Résultat de la concaténation
      */
     String& operator += (const char* other);
+
+    /**
+     * Concatène la valeur courante avec le caractère passé en paramètre
+     * et assigne le résultat à la valeur courante
+     *
+     * @param c Caractère a concaténer
+     * @return Résultat de la concaténation
+     */
+    String& operator += (char c);
 
     /**
      * Surcharge de l'opérateur de flux entrant

@@ -88,13 +88,11 @@ size_t String::getSize() const {
     return strlen(value);
 }
 
-// TODO
 const char& String::at(size_t index) const {
     isIndexValid(index);
     return value[index];
 }
 
-// TODO
 char& String::at(size_t index) {
     isIndexValid(index);
     return value[index];
@@ -227,12 +225,23 @@ String String::operator + (const char* chars) {
     return result;
 }
 
+String String::operator + (char c) {
+    String result(value);
+    result.append(c);
+
+    return result;
+}
+
 String& String::operator += (const String& other) {
     append(other);
 }
 
 String& String::operator += (const char* chars) {
     append(chars);
+}
+
+String& String::operator += (char c) {
+    append(c);
 }
 
 std::istream& operator >> (std::istream& is, const String& string) {
