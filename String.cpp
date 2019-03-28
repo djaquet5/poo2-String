@@ -234,8 +234,8 @@ String& String::operator += (char c) {
 }
 
 std::istream& operator >> (std::istream& is, const String& string) {
-    is >> string.value;
-
+    // Le deuxième paramètre est la taille du texte que l'on peut entrer, il est choisi arbitrairement
+    is.getline(string.value, 10000, '\n');
     return is;
 }
 
