@@ -202,7 +202,7 @@ bool intConstructorTests() {
     return pass(value);
 }
 
-// TODO comportement to_string (explication)
+// Basé sur le comportement de std:to_string
 bool doubleConstructorTests() {
     const char* value;
     String s(1234.005);
@@ -444,7 +444,7 @@ bool appendTests() {
 
 bool atOperatorTests() {
     const String constStr("Constante");
-    
+
     String string("atOperatorTests!");
     size_t size = string.getSize();
 
