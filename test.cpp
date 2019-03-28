@@ -602,7 +602,7 @@ bool fluxOperatorTests() {
     cout << "fluxOperatorTests : " << endl;
 
     // On teste l'opérateur de flux << pour un String avec une valeur hard codée
-    cout << endl << "Entrez le texte  : ";
+    cout << endl << "Entrez un texte  : ";
 
     // On teste l'opérateur de flux >> pour la saisie utilisateur
     cin >> userString;
