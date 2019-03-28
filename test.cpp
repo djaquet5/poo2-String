@@ -168,6 +168,7 @@ bool intConstructorTests() {
     return pass();
 }
 
+// TODO comportement to_string (explication)
 bool doubleConstructorTests() {
     String s(1234.005);
     String s1(-987.123);
@@ -215,7 +216,7 @@ bool equalsTests() {
 
     cout << "equalsTests : ";
 
-    // On vérifique le equals avec une chaine de caractère
+    // On vérifie que le equals avec une chaine de caractère
     if(!string1.equals(str)) {
         return fail();
     }
@@ -235,8 +236,6 @@ bool equalsTests() {
     return pass();
 }
 
-
-// TODO : Finir depuis là
 bool getSizeTests() {
     String string("Size");
 
@@ -245,6 +244,7 @@ bool getSizeTests() {
         return fail();
     }
 
+    // On teste que la taille change bien après y avoir ajouté des caractères
     string.append(" !");
     if(string.getSize() != 6) {
         return fail();
@@ -259,6 +259,7 @@ bool atTests() {
     String string("atTests!");
     size_t size = string.getSize();
 
+    // On teste le comportement normal
     cout << "atTests : ";
     if(string.at(0) != 'a') {
         return fail();
@@ -272,11 +273,13 @@ bool atTests() {
         return fail();
     }
 
+    // On teste qu'un accès illégal retourne une exception
     try {
         string.at(size);
         return fail();
     } catch(out_of_range& e) {}
 
+    // On vérifie qu'on peut modifier un String qui n'est pas const
     string.at(0) = 'b';
     if(string.at(0) != 'b') {
         return fail();
@@ -306,6 +309,7 @@ bool getValueTests() {
     return pass();
 }
 
+// TODO : Finir depuis là
 bool substringTests() {
     const String s("hello world");
 
