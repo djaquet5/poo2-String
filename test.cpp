@@ -40,7 +40,7 @@ void runAllTests() {
 }
 
 bool constructorTests() {
-    cout << "-------- Tests des constructeurs --------" << endl << endl;
+    cout << endl << "-------- Tests des constructeurs --------" << endl << endl;
 
     return emptyConstructorTests() &&
             stringConstructorTests() &&
@@ -53,7 +53,7 @@ bool constructorTests() {
 }
 
 bool methodTests() {
-    cout << "-------- Tests des méthodes --------" << endl << endl;
+    cout << endl << "-------- Tests des methodes --------" << endl << endl;
 
     return equalsTests() &&
             getSizeTests() &&
@@ -64,7 +64,7 @@ bool methodTests() {
 }
 
 bool operatorTests() {
-    cout << "-------- Tests des opérateurs --------" << endl << endl;
+    cout << endl << "-------- Tests des operateurs --------" << endl << endl;
 
     return atOperatorTests() &&
             equalsOperatorTests() &&
@@ -77,10 +77,13 @@ bool operatorTests() {
 
 /* ----- Tests des constructeurs de String ----- */
 
+// TODO : revérifier commentaire de constructeurss
 bool emptyConstructorTests() {
     String s;
 
     cout << "emptyConstructorTests : ";
+
+    // On vérifie que le constructeur vide initialise l'objet correctement (chaine vide)
     if(s.getSize() != 0 || s.getValue()[0] != '\0') {
         return fail();
     }
@@ -94,11 +97,15 @@ bool stringConstructorTests() {
     String s1(s);
 
     cout << "stringConstructorTests : ";
+
+    // On vérifie que le constructeur par copie fonctionne
     if(s1.getSize() != 3 || strcmp(s1.getValue(), "abc") != 0) {
         return fail();
     }
 
     s.append('d');
+
+    // On vérifie l'encapsulation des données en vérifiant que s1 n'a pas changé
     if(s1.getSize() != 3 || strcmp(s1.getValue(), "abc") != 0) {
         return fail();
     }
@@ -207,15 +214,20 @@ bool equalsTests() {
     String string2(str);
 
     cout << "equalsTests : ";
+
+    // On vérifique le equals avec une chaine de caractère
     if(!string1.equals(str)) {
         return fail();
     }
 
+    // On vérifie le equals avec un String
     if(!string1.equals(string2)) {
         return fail();
     }
 
     string2.append(" not equals anymore");
+
+    // On teste deux String qui ne sont pas égaux
     if(string2.equals(string1)) {
         return fail();
     }
@@ -223,6 +235,8 @@ bool equalsTests() {
     return pass();
 }
 
+
+// TODO : Finir depuis là
 bool getSizeTests() {
     String string("Size");
 

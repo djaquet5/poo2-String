@@ -7,7 +7,8 @@
 
  But         : Liste des différents tests pour la classe String
 
- Remarque(s) :
+ Remarque(s) : - Les fonctions n'ont pas tous un en-tête de fonction car leur nom
+                 est suffisamment clair.
 
  -----------------------------------------------------------------------------------
 */

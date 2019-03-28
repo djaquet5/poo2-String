@@ -5,7 +5,9 @@
  Auteur(s)   : David Jaquet & Christoph Rueff
  Date        : 07.03.2019
 
- Remarque(s) :
+ Remarque(s) : - Plusieurs choix d'implémentation ont été fait en fonction de la
+                 classe std::string de c++
+                 http://www.cplusplus.com/reference/string/string/?kw=string
 
  -----------------------------------------------------------------------------------
 */
