@@ -440,7 +440,21 @@ bool notEqualsOperatorTests() {
 }
 
 bool affectationOperatorTests() {
+    const String s("string");
+    String s1;
 
+    cout << "affectationOperatorTests : ";
+    s1 = s;
+    if(s1.getSize() != s.getSize() || strcmp(s1.getValue(), s.getValue()) != 0) {
+        return fail();
+    }
+
+    s1 = "other string";
+    if(s1.getSize() != 12 || strcmp(s1.getValue(), "other string") != 0) {
+        return fail();
+    }
+
+    return pass();
 }
 
 bool plusOperatorTests() {
