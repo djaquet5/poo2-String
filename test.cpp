@@ -99,6 +99,11 @@ bool stringConstructorTests() {
         return fail();
     }
 
+    s.append('d');
+    if(s1.getSize() != 3 || strcmp(s1.getValue(), "abc") != 0) {
+        return fail();
+    }
+
     return pass();
 }
 

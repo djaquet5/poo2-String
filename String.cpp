@@ -52,7 +52,6 @@ String::String(int i) {
     size_t size = (size_t) snprintf(nullptr, 0, "%d", i) + 1;
     value = new char[size];
 
-    // TODO : Pas sur que ça marche, sinon, passer par un buffer et faire strcpy
     snprintf(value, size, "%d", i);
 }
 
@@ -60,7 +59,6 @@ String::String(double d) {
     size_t size = (size_t) snprintf(nullptr, 0, "%f", d) + 1;
     value = new char[size];
 
-    // TODO : Pas sur que ça marche, sinon, passer par un buffer et faire strcpy
     snprintf(value, size, "%f", d);
 }
 
@@ -183,7 +181,6 @@ bool String::operator != (const char* chars) const {
 
 String& String::operator = (const String& other) {
     if(this != &other) {
-        // TODO c'est juste ça ???
         *this = other.value;
     }
 
