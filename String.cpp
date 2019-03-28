@@ -20,13 +20,11 @@ String::String() : String("") {}
 
 String::String(const char* chars) {
     size_t size = strlen(chars);
+
     value = new char[size + 1];
-
-    for(size_t i = 0; i < size; i++) {
-        value[i] = chars[i];
-    }
-
     value[size] = NULL_CHAR;
+
+    strncpy(value, chars, size);
 }
 
 String::String(const char* chars, size_t n) {
@@ -54,7 +52,6 @@ String::String(int i) {
     size_t size = (size_t) snprintf(nullptr, 0, "%d", i) + 1;
     value = new char[size];
 
-    // TODO : Pas sur que ça marche, sinon, passer par un buffer et faire strcpy
     snprintf(value, size, "%d", i);
 }
 
@@ -62,16 +59,10 @@ String::String(double d) {
     size_t size = (size_t) snprintf(nullptr, 0, "%f", d) + 1;
     value = new char[size];
 
-    // TODO : Pas sur que ça marche, sinon, passer par un buffer et faire strcpy
     snprintf(value, size, "%f", d);
 }
 
-String::String(bool b) {
-    value = new char[2];
-
-    value[0] = b;
-    value[1] = NULL_CHAR;
-}
+String::String(bool b): String(b ? 1 : 0) {}
 
 bool String::equals(const String& other) const {
     return equals(other.value);
@@ -122,11 +113,10 @@ String String::substr(size_t start, size_t length) const {
         length = size - start;
     }
 
-    char result[length];
+    char result[length + 1];
+    result[length] = NULL_CHAR;
 
-    for(size_t i = 0; i < length; i++) {
-        result[i] = value[start + i];
-    }
+    strncpy(result, value + start, length);
 
     return String(result);
 }
@@ -189,7 +179,6 @@ bool String::operator != (const char* chars) const {
 
 String& String::operator = (const String& other) {
     if(this != &other) {
-        // TODO c'est juste ça ???
         *this = other.value;
     }
 
