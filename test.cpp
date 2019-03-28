@@ -88,7 +88,6 @@ bool emptyConstructorTests() {
     return pass();
 }
 
-// TODO add test if s is modified after ?
 bool stringConstructorTests() {
     String s("abc");
 
