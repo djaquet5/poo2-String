@@ -236,8 +236,12 @@ String& String::operator += (char c) {
 }
 
 std::istream& operator >> (std::istream& is, const String& string) {
-    // Le deuxième paramètre est la taille du texte que l'on peut entrer, il est choisi arbitrairement
-    is.getline(string.value, 10000, '\n');
+    // MAX_SIZE est la taille du texte que l'on peut entrer
+    // Il a été choisi selon la valeur de retour de la méthode string::max_size()
+    const size_t MAX_SIZE = 4294967292;
+
+    is.getline(string.value, MAX_SIZE, '\n');
+
     return is;
 }
 
