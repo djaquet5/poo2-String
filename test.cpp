@@ -19,14 +19,30 @@
 
 using namespace std;
 
+// fonctions utilitaires pour les tests
+
+void free(const char* value) {
+    delete[] value;
+}
+
 bool pass() {
     cout << "pass" << endl;
     return true;
 }
 
+bool pass(const char* value) {
+    free(value);
+    pass();
+}
+
 bool fail() {
     cout << "fail" << endl;
     return false;
+}
+
+bool fail(const char* value) {
+    free(value);
+    fail();
 }
 
 void runAllTests() {
@@ -79,19 +95,22 @@ bool operatorTests() {
 
 // TODO : revérifier commentaire de constructeurss
 bool emptyConstructorTests() {
+    const char* value;
     String s;
 
     cout << "emptyConstructorTests : ";
 
     // On vérifie que le constructeur vide initialise l'objet correctement (chaine vide)
-    if(s.getSize() != 0 || s.getValue()[0] != '\0') {
-        return fail();
+    value = s.getValue();
+    if(s.getSize() != 0 || value[0] != '\0') {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool stringConstructorTests() {
+    const char* value;
     String s("abc");
 
     String s1(s);
@@ -99,112 +118,136 @@ bool stringConstructorTests() {
     cout << "stringConstructorTests : ";
 
     // On vérifie que le constructeur par copie fonctionne
-    if(s1.getSize() != 3 || strcmp(s1.getValue(), "abc") != 0) {
-        return fail();
+    value = s1.getValue();
+    if(s1.getSize() != 3 || strcmp(value, "abc") != 0) {
+        return fail(value);
     }
 
     s.append('d');
 
     // On vérifie l'encapsulation des données en vérifiant que s1 n'a pas changé
-    if(s1.getSize() != 3 || strcmp(s1.getValue(), "abc") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 3 || strcmp(value, "abc") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool cstringConstructorTests() {
+    const char* value;
     String s("string");
 
     cout << "cstringConstructorTests : ";
-    if(s.getSize() != 6 || strcmp(s.getValue(), "string") != 0) {
-        return fail();
+    value = s.getValue();
+    if(s.getSize() != 6 || strcmp(value, "string") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool charArrayConstructorTests() {
+    const char* value;
     char chars[5] = {'a', 'b', 'c', 'd', 'e'};
     String s(chars, 5);
 
     cout << "charArrayConstructorTests : ";
-    if(s.getSize() != 5 || strcmp(s.getValue(), "abcde") != 0) {
-        return fail();
+    value = s.getValue();
+    if(s.getSize() != 5 || strcmp(value, "abcde") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool charConstructorTests() {
+    const char* value;
     String s('X');
 
     cout << "charConstructorTests : ";
-    if(s.getSize() != 1 || strcmp(s.getValue(), "X") != 0) {
-        return fail();
+    value = s.getValue();
+    if(s.getSize() != 1 || strcmp(value, "X") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool intConstructorTests() {
+    const char* value;
     String s(2019);
     String s1(-2019);
     String s2(0);
 
     cout << "intConstructorTests : ";
-    if(s.getSize() != 4 || strcmp(s.getValue(), "2019") != 0) {
-        return fail();
+    value = s.getValue();
+    if(s.getSize() != 4 || strcmp(value, "2019") != 0) {
+        return fail(value);
     }
 
-    if(s1.getSize() != 5 || strcmp(s1.getValue(), "-2019") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 5 || strcmp(value, "-2019") != 0) {
+        return fail(value);
     }
 
-    if(s2.getSize() != 1 || strcmp(s2.getValue(), "0") != 0) {
-        return fail();
+    free(value);
+    value = s2.getValue();
+    if(s2.getSize() != 1 || strcmp(value, "0") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 // TODO comportement to_string (explication)
 bool doubleConstructorTests() {
+    const char* value;
     String s(1234.005);
     String s1(-987.123);
     String s2(000.000);
 
     cout << "doubleConstructorTests : ";
-    if(s.getSize() != 11 || strcmp(s.getValue(), "1234.005000") != 0) {
-        return fail();
+    value = s.getValue();
+    if(s.getSize() != 11 || strcmp(value, "1234.005000") != 0) {
+        return fail(value);
     }
 
-    if(s1.getSize() != 11 || strcmp(s1.getValue(), "-987.123000") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 11 || strcmp(value, "-987.123000") != 0) {
+        return fail(value);
     }
 
-    if(s2.getSize() != 8 || strcmp(s2.getValue(), "0.000000") != 0) {
-        return fail();
+    free(value);
+    value = s2.getValue();
+    if(s2.getSize() != 8 || strcmp(value, "0.000000") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool boolConstructorTests() {
+    const char* value;
     String s(true);
     String s1(false);
 
     cout << "boolConstructorTests : ";
-
-    if(s.getSize() != 1 || strcmp(s.getValue(), "1") != 0) {
-        return fail();
+    value = s.getValue();
+    if(s.getSize() != 1 || strcmp(value, "1") != 0) {
+        return fail(value);
     }
 
-    if(s1.getSize() != 1 || strcmp(s1.getValue(), "0") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 1 || strcmp(value, "0") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 /* ----- Tests des méthodes de String ----- */
@@ -215,7 +258,6 @@ bool equalsTests() {
     String string2(str);
 
     cout << "equalsTests : ";
-
     // On vérifie que le equals avec une chaine de caractère
     if(!string1.equals(str)) {
         return fail();
@@ -294,58 +336,75 @@ bool atTests() {
 }
 
 bool getValueTests() {
+    const char* value;
     String s("test 1 2 3");
     String s1("");
 
     cout << "getValueTests : ";
-    if(strcmp(s.getValue(), "test 1 2 3") != 0) {
-        return fail();
+    value = s.getValue();
+    if(strcmp(value, "test 1 2 3") != 0) {
+        return fail(value);
     }
 
-    if(strcmp(s1.getValue(), "") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(strcmp(value, "") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
-// TODO : Finir depuis là
 bool substringTests() {
+    const char* value;
     const String s("hello world");
 
     String s1 = s.substr(0);
 
+    // On teste du comportement normal de substr avec un paramètre
     cout << "substringTests : ";
-    if(s1.getSize() != 11 || strcmp(s.getValue(), "hello world") != 0) {
-        return fail();
+    value = s1.getValue();
+    if(s1.getSize() != 11 || strcmp(value, "hello world") != 0) {
+        return fail(value);
     }
 
     s1 = s.substr(3);
-    if(s1.getSize() != 8 || strcmp(s1.getValue(), "lo world") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 8 || strcmp(value, "lo world") != 0) {
+        return fail(value);
     }
 
     s1 = s.substr(s.getSize());
-    if(s1.getSize() != 0 || strcmp(s1.getValue(), "") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 0 || strcmp(value, "") != 0) {
+        return fail(value);
     }
 
+    // On vérifie que substr retourne une exception si on utilise un paramètre illégal
     try {
         s1 = s.substr(s.getSize() + 1);
         return fail();
     } catch(out_of_range& e) {}
 
+    // On teste le comportement normal de substr avec 2 paramètres
     s1 = s.substr(6,3);
-    if(s1.getSize() != 3 || strcmp(s1.getValue(), "wor") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 3 || strcmp(value, "wor") != 0) {
+        return fail(value);
     }
 
+    // On teste le cas où la longueur voulue est plus grande que la taille du String
     s1 = s.substr(6, 100);
-    if(s1.getSize() != 5 || strcmp(s1.getValue(), "world") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 5 || strcmp(value, "world") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool appendTests() {
@@ -355,16 +414,19 @@ bool appendTests() {
     String string2("String2");
 
     cout << "appendTests : ";
+    // On teste append avec un char
     string1.append(' ');
     if(!string1.equals("String1 ")) {
         return fail();
     }
 
+    // On teste append avec un c-string
     string1.append("et ");
     if(!string1.equals("String1 et ")) {
         return fail();
     }
 
+    // On teste append avec un String
     string1.append(string2);
     if(!string1.equals("String1 et String2")) {
         return fail();
@@ -382,7 +444,7 @@ bool appendTests() {
 
 bool atOperatorTests() {
     const String constStr("Constante");
-
+    
     String string("atOperatorTests!");
     size_t size = string.getSize();
 
@@ -462,21 +524,25 @@ bool notEqualsOperatorTests() {
 }
 
 bool affectationOperatorTests() {
+    const char* value;
     const String s("string");
     String s1;
 
     cout << "affectationOperatorTests : ";
     s1 = s;
-    if(s1.getSize() != s.getSize() || strcmp(s1.getValue(), s.getValue()) != 0) {
-        return fail();
+    value = s1.getValue();
+    if(s1.getSize() != s.getSize() || strcmp(value, "string") != 0) {
+        return fail(value);
     }
 
     s1 = "other string";
-    if(s1.getSize() != 12 || strcmp(s1.getValue(), "other string") != 0) {
-        return fail();
+    free(value);
+    value = s1.getValue();
+    if(s1.getSize() != 12 || strcmp(value, "other string") != 0) {
+        return fail(value);
     }
 
-    return pass();
+    return pass(value);
 }
 
 bool plusOperatorTests() {
